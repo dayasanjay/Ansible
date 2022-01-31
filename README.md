@@ -68,7 +68,7 @@ Notes<br>
  ===> The defualt inventory file is /etc/ansible/hosts  and when using this inventory file, we need not use -i option<br>
  ===> If we do not mention the inventory file, it takes default inventory file<br>
  ===> command module is the default module in ansible<br>
- ### Adhoc commands
+### Adhoc commands
    ===> Important modules in ansible<br>
 1) command - This module is used for executing basic linux commands on managed nodes.<br>
 2) shell -  This module is used to execute commands which involved redirection and piping and to execute shell scripts on managed nodes.<br>
