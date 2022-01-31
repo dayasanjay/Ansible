@@ -217,17 +217,27 @@ save and quit<br>
 $ cd ..<br>
 $ vim playbook4.yml<br>
 
-[playbook4.txt](https://github.com/dayasanjay/Ansible/files/7969800/playbook4.txt)
+[playbook4.txt](https://github.com/dayasanjay/Ansible/files/7969800/playbook4.txt)<br>
 
-save and quit
+save and quit<br>
 
 $ ansible-playbook  playbook4.yml  -b<br>
-
-
-
-
-
-
+### Implemneting loops
+<b>Modules in ansible can be executed multiple times using loops</b>
+$ vim playbook5.yml
+[playbook5.txt](https://github.com/dayasanjay/Ansible/files/7969863/playbook5.txt)<br>
+$ ansible-playbook  playbook11.yml  -b <br>
+### Handlers
+Handler is a piece of code which is executed, if some other module is executed successfully and it has made some changes.<br>
+Handlers are always executed only after all the tasks are executed.<br>
+Handlers are executed in the order that are mentioned in the handler section, and not in the order they are called in the tasks section.<br>
+Even if handler is called multiple times in the tasks section, it will be executed only once.<br>
+$ vim playbook6.yml<br>
+[playbook6.txt](https://github.com/dayasanjay/Ansible/files/7969894/playbook6.txt)<br>
+$ ansible-playbook  playbook6.yml  -b<br>
+Note:<br>
+---> As editing the index.html file is successfull, handler is executed.<br>
+---> If you re run the playbook, handler is not executed.<br>
 
 
 
