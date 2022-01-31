@@ -184,34 +184,44 @@ note: those are private ips of the node machines which we are using <br>
 $ mkdir group_vars<br>
 $ cd group_vars<br>
 $  vim webserver<br>
-a: Prakash
-b: logiclabs
-c: /home/Prakash
-d: 67809
-e: /bin/bash
+a: Prakash<br>
+b: logiclabs<br>
+c: /home/Prakash<br>
+d: 67809<br>
+e: /bin/bash<br>
 
-Save and Quit
+Save and Quit<br>
 
-$ cd ..
-playbooks$ vim playbook8.yml
+$ cd .. <br>
+playbooks$ vim playbook8.yml<br>
 
----
-- name: Using host scope variables
-  hosts: webserver
-  tasks:
-   - name: User creation
-     user:
-      name: "{{a}}"
-      password: "{{b}}"
-      home: "{{c}}"
-      uid: "{{d}}"
-      shell: "{{e}}"
-...
+[playbook3.txt](https://github.com/dayasanjay/Ansible/files/7969764/playbook3.txt)<br>
+
+save and quit<br>
+TO run the playbook<br>
+$ ansible-playbook playbook8.yml  -b  ( It runs on two machines)<br>
+<b>Variables to work on single hosts</b><br>
+These variables  are designed on single machine.<br>
+Thet are created in folder called host_wars<br>
+This host_wars folder should be created in the same location of where the playbooks are present.<br>
+
+playbooks$ mkdir host_vars<br>
+$ cd host_vars<br>
+$ vim 172.31.6.241        ( 172.31.6.241  private Ip of node)<br>
+
+a: firewalld<br>
+b: present<br>
+c: yes<br>
+
+save and quit<br>
+$ cd ..<br>
+$ vim playbook4.yml<br>
+
+[playbook4.txt](https://github.com/dayasanjay/Ansible/files/7969800/playbook4.txt)
 
 save and quit
 
-TO run the playbook
-$ ansible-playbook playbook8.yml  -b  ( It runs on two machines)
+$ ansible-playbook  playbook4.yml  -b<br>
 
 
 
