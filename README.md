@@ -108,6 +108,42 @@ $ ansible all -m apt  -a 'name=git  state=present' -b<br>
   --->  state=present  is for installation<br>
   --->  state=latest   is for upgradation<br>
   --->  state=absent   is for uninstallation<br>
+### Play books
+Adhoc commands are capable of working only on one module and one set of arguments.When we want to perform complex configuration management activities, adhoc commands will be difficult to manage.<br>
+In such scenarios, we use play books.Play book is combination of plays. Each play is designed to do some activity on the managed nodes. These plays are created to work on single host or a group of hosts or all the hosts.<br>
+The main advantage of play books  is reusability.<br>
+Play books are created using  yaml files.<br>
+++++++++++++++++++++++++++++++++++++++++++++<br>
+$ mkdir  playbooks<br>
+$ cd playbooks<br>
+$ vim playbook1.yml<br>
+
+---<br>
+- name: Install git and clone a remote repository<br>
+  hosts: all<br>
+  tasks:<br>
+    - name: Install git<br>
+      apt:<br>
+       name: git<br>
+       state: present<br>
+       update_cache: yes<br>
+    - name: clone remote git repository<br>
+      git:<br>
+        repo: https://github.com/sunilkumark11/git-9am-batch.git<br>
+        dest: /home/ubuntu/newgit<br>  	
+...<br>
+
+
+
+To check the syntax:<br>
+$ ansible-playbook  playbook1.yml  --syntax-check<br>
+
+note ----> ( Do not use tab  when creating yml file )<br>
+
+<b>To run the playbook</b><br>
+$ ansible-playbook  playbook1.yml  -b<br>
++++++++++++++++++++++++++++++++++++++++++<br>
+
 
 
 
