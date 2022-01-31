@@ -69,7 +69,7 @@ Notes<br>
  ===> If we do not mention the inventory file, it takes default inventory file<br>
  ===> command module is the default module in ansible<br>
  ### Adhoc commands
-===> Important modules in ansible<br>
+   ===> Important modules in ansible<br>
 1) command - This module is used for executing basic linux commands on managed nodes.<br>
 2) shell -  This module is used to execute commands which involved redirection and piping and to execute shell scripts on managed nodes.<br>
 3) ping  --  This module is used to check if the remote server is pingable or not.<br>
