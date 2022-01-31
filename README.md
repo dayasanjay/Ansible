@@ -63,4 +63,8 @@ insert the private ip addresss of 3 servers, save and quit<br>
 2) using play books <br>
 ### Common syntx of adhoc commands
 $ ansible  all/group_name/ipaddress -i  path_of_inventory_file -m modulename  -a  'arguments'<br>
------> Note : we can create our own inventory file if we need and can add the private ip address of the wanted node machines<br>
+Notes<br>
+ ===> we can create our own inventory file if we need and can add the private ip address of the wanted node machines<br>
+ ===> The defualt inventory file is /etc/ansible/hosts  and when using this inventory file, we need not use -i option<br>
+ ===> If we do not mention the inventory file, it takes default inventory file<br>
+ ===> command module is default module in ansible<br>
