@@ -239,8 +239,17 @@ Note:<br>
 ---> As editing the index.html file is successfull, handler is executed.<br>
 ---> If you re run the playbook, handler is not executed.<br>
 
+### Error Handling
+If any module fails in ansible,the execution of the playbook terminates over there.<br>
+When we know that certain module might fail, and still we want to continue playbook execution, we can use error handling.<br>
+The section of code which might generate an error should be given in block section.<br>
+If it generates an error, the control comes to rescue section.<br>
+Always section is executed every time, irespective of whether the block is successfull or failure.<br>
 
+$ vim playbook7.yml<br>
+[playbook7.txt](https://github.com/dayasanjay/Ansible/files/7969935/playbook7.txt)<br>
 
+$ ansible-playbook  playbook7.yml  -b<br>
 
 
 
