@@ -117,6 +117,7 @@ Play books are created using  yaml files.<br>
 $ mkdir  playbooks<br>
 $ cd playbooks<br>
 $ vim playbook1.yml<br>
+
 [playbook.txt](https://github.com/dayasanjay/Ansible/files/7969164/playbook.txt)<br>
 
 To check the syntax:<br>
@@ -127,6 +128,23 @@ note ----> ( Do not use tab  when creating yml file )<br>
 <b>To run the playbook</b><br>
 $ ansible-playbook  playbook1.yml  -b<br>
 +++++++++++++++++++++++++++++++++++++++++<br>
+
+### Creating reusable playbooks using variables
+<b>Three types of variables</b><br>
+1) Global scope variables   ( highest priority )  - we pass values from command prompt <br>
+2) Host scope variables    <br>
+3) play scope variables   ( least priority )<br>
+
+<b>Ex of Global scope variables</b><br>
+[playbook2.txt](https://github.com/dayasanjay/Ansible/files/7969286/playbook2.txt)<br>
+
+To run the playbook  by passing values to the variables
+$ ansible-playbook  playbook5.yml  --extra-vars "a=git b=absent c=no"  -b
+
+( The above command will uninstall git from all nodes )
+
+Run the same playbook with diffrent values
+$ ansible-playbook  playbook5.yml  --extra-vars "a=tree b=present c=no"  -b
 
 
 
