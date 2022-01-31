@@ -138,13 +138,81 @@ $ ansible-playbook  playbook1.yml  -b<br>
 <b>Ex of Global scope variables</b><br>
 [playbook2.txt](https://github.com/dayasanjay/Ansible/files/7969286/playbook2.txt)<br>
 
-To run the playbook  by passing values to the variables
-$ ansible-playbook  playbook5.yml  --extra-vars "a=git b=absent c=no"  -b
+To run the playbook  by passing values to the variables<br>
+$ ansible-playbook  playbookname.yml  --extra-vars "a=git b=absent c=no"  -b<br>
 
-( The above command will uninstall git from all nodes )
+( The above command will uninstall git from all nodes )<br>
 
-Run the same playbook with diffrent values
-$ ansible-playbook  playbook5.yml  --extra-vars "a=tree b=present c=no"  -b
+<b>Run the same playbook with diffrent values</b><br>
+$ ansible-playbook  playbookname.yml  --extra-vars "a=tree b=present c=no"  -b<br>
+<b>Playscope variables are definined within the playbook and they can effect only in one single play</b><br>
+[play_scope_variables.txt](https://github.com/dayasanjay/Ansible/files/7969506/play_scope_variables.txt)<br>
+$ ansible-playbook  play_scope_variables.yml  -b<br>
+
+We can run by using extra vars from command line<br>
+$ ansible-playbook  playbook_name.yml    --extra-vars "a=tree b=present c=no"  -b<br>
+
+The above command will install tree because global scope variables have higher priority<br>
+
+<b>Notes: Playscope variables are definied at level of individual plays and they can effect only one play.</b><br>
+---> The above playbook works like a template, who's default behaviour is to install tomcat8 but, we can by pass that behaviour and make it work in some other software by passing the variables as extra vars<br>
+<b>Host scope variables</b>
+These variables are classified into 2 types<br>
+1) Variables to work on group of hosts<br>
+2) Variables to work on single hosts<br>
+<b>Variables to work on group of hosts</b>
+These variables are designed to work on group of hosts.<br>
+They are definined in a folder called  group_vars.<br>
+This group_vars folder should be presnent in the same folder where all the playbooks are present.<br>
+In this group_vars folder, we should create a file who's name is same as group_name in Inventory file.<br>
+In this file we create variables.<br>
+<b>Varibles which work in group of hosts are divided into two types</b><br>
+1) Variables which work in group of machines<br>
+2) Variables which work on one machine<br>
+<b>Variables which work in group of machines</b><br>
+We can do grouping using  [groupname]<br>
+To do grouping<br>
+$ sudo vim hosts<br>
+[webserver]<br>
+172.31.11.96<br>
+172.31.6.207<br>
+[appserver]<br>
+172.31.12.138<br>
+[dbserver]<br>
+172.31.31.161<br>
+note: those are private ips of the node machines which we are using <br>
+$ mkdir group_vars<br>
+$ cd group_vars<br>
+$  vim webserver<br>
+a: Prakash
+b: logiclabs
+c: /home/Prakash
+d: 67809
+e: /bin/bash
+
+Save and Quit
+
+$ cd ..
+playbooks$ vim playbook8.yml
+
+---
+- name: Using host scope variables
+  hosts: webserver
+  tasks:
+   - name: User creation
+     user:
+      name: "{{a}}"
+      password: "{{b}}"
+      home: "{{c}}"
+      uid: "{{d}}"
+      shell: "{{e}}"
+...
+
+save and quit
+
+TO run the playbook
+$ ansible-playbook playbook8.yml  -b  ( It runs on two machines)
+
 
 
 
