@@ -118,20 +118,20 @@ $ mkdir  playbooks<br>
 $ cd playbooks<br>
 $ vim playbook1.yml<br>
 
----<br>
-- name: Install git and clone a remote repository<br>
+- - - <br>
+ - name: Install git and clone a remote repository<br>
   hosts: all<br>
   tasks:<br>
-    - name: Install git<br>
+     - name: Install git<br>
       apt:<br>
        name: git<br>
        state: present<br>
        update_cache: yes<br>
-    - name: clone remote git repository<br>
+     - name: clone remote git repository<br>
       git:<br>
         repo: https://github.com/sunilkumark11/git-9am-batch.git<br>
         dest: /home/ubuntu/newgit<br>  	
-...<br>
+. . . <br>
 
 
 
