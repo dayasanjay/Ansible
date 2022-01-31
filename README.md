@@ -67,4 +67,55 @@ Notes<br>
  ===> we can create our own inventory file if we need and can add the private ip address of the wanted node machines<br>
  ===> The defualt inventory file is /etc/ansible/hosts  and when using this inventory file, we need not use -i option<br>
  ===> If we do not mention the inventory file, it takes default inventory file<br>
- ===> command module is default module in ansible<br>
+ ===> command module is the default module in ansible<br>
+ ### Adhoc commands
+===> Important modules in ansible<br>
+1) command - This module is used for executing basic linux commands on managed nodes.<br>
+2) shell -  This module is used to execute commands which involved redirection and piping and to execute shell scripts on managed nodes.<br>
+3) ping  --  This module is used to check if the remote server is pingable or not.<br>
+4) user --  This module is used for user management like create user, setting password, assign home directory  etc<br>
+5) copy  --  This module is used to copy the files and folders from controller to managed nodes.<br>
+6) fetch  --  This module is used to copy files and folder from managed nodes to controller.<br>
+7) file  --  This module is used for creating or deleting files and folders on managed nodes.<br>
+8) stat  --  Used to capture detailed information about files and folders present in managed nodes.<br>
+9) debug --  Used to display output of any module.<br>
+10) apt   --  Used for performing package management on managed nodes ie installing softwares / upgrading repositories  etc . It works on ubuntu, debain flavours of linux.<br> 
+11) yum  --  similar to apt module. It works on Red hat linux, centos etc<br>
+12) git  --  used to perform git version controlling on managed nodes<br>
+13) replace -- This is used to replace specific text in configuration file with some other text.<br>
+14) service  -- used for starting / stoping / restarting services on managed nodes.<br>
+15) include  --  Used for calling child play books  from parent play book.<br>
+16) uri    -- useful in checking  if remote url is reachable or not.<br>
+17) docker_container  --  used to execute docker  commands related to container management on managed nodes.<br>
+18) docker_image  --  used to execute commands related to docker images on managed nodes.<br>
+19) docker_login  --  used to login to docker hub from managed nodes.<br>
+20) setup   --  used to capturing system information related to the managed nodes.<br>
+++++++++++++++++++++++++++++++++++++++++++++++++<br>
+If you want to create users in all node machines <br>
+$ ansible  all -m user  -a  'name=ria  password=daya'<br>
+If we run the above command we will get error ( permission denied )<br>
+$ ansible  all -m user  -a  'name=ria password=daya'  -b  ( become , for higher privileges on managed nodes )<br>
+++++++++++++++++++++++++++++++++++++++++++++++++<br>
+Command to create user and set home directory, user id,  default working shell etc<br>
+Another example<br>
+$ ansible all -m user  -a 'name=Ravi password=freefree uid=1234 comment="A regular user"  home=/home/ubuntu/Ravi shell=/bin/bash' -b <br>
+To check for the new user in node machine <br>
+$  ssh 172.31.44.218(private_ip of_node machine)
+$ vim  /etc/passwd<br>
++++++++++++++++++++++++++++++++++++++++++++++++<br>
+apt module  -- This is used for package management<br>
+$ ansible all -m apt  -a 'name=git  state=present' -b<br>
+  --->  state=present  is for installation<br>
+  --->  state=latest   is for upgradation<br>
+  --->  state=absent   is for uninstallation<br>
+
+
+
+
+
+
+
+
+
+
+
